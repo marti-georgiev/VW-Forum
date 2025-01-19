@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace VWForum.Web.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class VWForumDbContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public VWForumDbContext(DbContextOptions<VWForumDbContext> options)
             : base(options)
         {
         }
