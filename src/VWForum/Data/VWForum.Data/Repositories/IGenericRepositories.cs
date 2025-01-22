@@ -1,6 +1,6 @@
 ﻿namespace VWForum.Data.Repositories
 {
-    public interface IGenericRepositories<Tkey, TEnity>
+    public interface IGenericRepositories<TEnity>
     {
         Task<TEnity> CreateAsyn(TEnity enity);
 

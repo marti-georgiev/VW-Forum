@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VWForum.Data.Models
+﻿namespace VWForum.Data.Models
 {
-    internal class Attachment
+    public class Attachment : BaseEntity
     {
+        public string CloudURL { get; set; }
     }
 }
