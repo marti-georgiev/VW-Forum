@@ -1,6 +1,7 @@
 # VW Club Forum
 
-![VW Forum](https://i.imgur.com/1Mt8BnG.png)
+![LogoVWForum](src/VWForum/Web/VWForum.Web/wwwroot/LogoVWForum.png)
+
 
 
 **The place for Volkswagen enthusiasts, owners, and hobbyists!** 🚗💨
