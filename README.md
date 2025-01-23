@@ -1,6 +1,7 @@
 # VW Club Forum
 
-![VW Forum]([https://i.imgur.com/1Mt8BnG.png](https://imgur.com/a/qpW3Wc0))
+![VW Forum](https://i.imgur.com/1Mt8BnG.png)
+
 
 **The place for Volkswagen enthusiasts, owners, and hobbyists!** 🚗💨
 
