@@ -2,6 +2,6 @@
 {
     public class Attachment : BaseEntity
     {
-        public string CloudURL { get; set; }
+        public  string CloudURL { get; set; }
     }
 }

@@ -6,6 +6,6 @@
 
         public Comments Comment { get; set; }
 
-        public Thread Thread { get; set; }
+        public VWThread Thread { get; set; }
     }
 }
