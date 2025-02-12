@@ -1,4 +1,4 @@
-# VW Club Forum
+# VW Forum
 
 ![LogoVWForum](src/VWForum/Web/VWForum.Web/wwwroot/LogoVWForum.png)
 
