@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace VWForum.Data.Models
+namespace VWForum.Service.Models
 {
-    public class Role : BaseEntity
+    public class RoleServiceModel : BaseServiceModel
     {
         public const string VWForumDefaultAuthority = "User";
         public string Labele { get; set; }

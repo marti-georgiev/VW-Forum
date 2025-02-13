@@ -4,9 +4,9 @@ using VWForum.Web.Data;
 
 namespace VWForum.Data.Repositories
 {
-    public class VWThread : MetaDataBaseGenericRepository<VWThread>
+    public class VWThreadRepository : MetaDataBaseGenericRepository<VWThread>
     {
-        public VWThread(VWForumDbContext dbcontext, IHttpContextAccessor? httpContextAccessor) 
+        public VWThreadRepository(VWForumDbContext dbcontext, IHttpContextAccessor? httpContextAccessor) 
             : base(dbcontext, httpContextAccessor)
         {
         }

@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using VWForum.Data.Models;
+using VWForum.Web.Data;
 namespace VWForum.Data.Repositories
+
 {
-    internal class RoleRepository
+    public class RoleRepository : BaseGenericRepository<Role>
     {
+        public RoleRepository(VWForumDbContext dbcontext) : base(dbcontext)
+        {
+        }
     }
+    
 }

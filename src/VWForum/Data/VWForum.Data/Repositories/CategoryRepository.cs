@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Http;
+using VWForum.Data.Models;
+using VWForum.Web.Data;
 
 namespace VWForum.Data.Repositories
 {
-    internal class Category
+    public class CategoryRepository : MetaDataBaseGenericRepository<Category>
     {
+        public CategoryRepository(VWForumDbContext dbContext, IHttpContextAccessor httpContextAccessor) : base(dbContext, httpContextAccessor)
+        {
+
+        }
     }
 }

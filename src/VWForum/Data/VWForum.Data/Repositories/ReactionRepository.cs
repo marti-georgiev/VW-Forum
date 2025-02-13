@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using VWForum.Data.Models;
+using Microsoft.AspNetCore.Http;
+using VWForum.Web.Data;
 namespace VWForum.Data.Repositories
 {
-    internal class ReactionRepository
+    public class ReactionRepository : MetaDataBaseGenericRepository<Reactions>
     {
+        public ReactionRepository(VWForumDbContext dbcontext, IHttpContextAccessor? httpContextAccessor) : base(dbcontext, httpContextAccessor)
+        {
+        }
     }
 }

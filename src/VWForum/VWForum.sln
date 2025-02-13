@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VWForum.Data.Models", "Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VWForum.Web.Models", "Web\VWForum.Web.Models\VWForum.Web.Models.csproj", "{772D646F-2EB1-4603-A045-B64B467ED0E4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VWForum.Service.Mappings", "Service\Sevice.Mappings\VWForum.Service.Mappings.csproj", "{7B70BEAA-BCC0-4A93-8E04-EC5228969A7E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{772D646F-2EB1-4603-A045-B64B467ED0E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{772D646F-2EB1-4603-A045-B64B467ED0E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{772D646F-2EB1-4603-A045-B64B467ED0E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B70BEAA-BCC0-4A93-8E04-EC5228969A7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B70BEAA-BCC0-4A93-8E04-EC5228969A7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B70BEAA-BCC0-4A93-8E04-EC5228969A7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B70BEAA-BCC0-4A93-8E04-EC5228969A7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,5 +68,6 @@ Global
 		{E74A31AC-0EBE-490E-92E3-4AFEF20120C2} = {F46B86CB-07A6-4C04-A038-C40A192180F2}
 		{DEF18EEF-E858-45C5-AF4F-ADC41FDD37E0} = {7046D4FF-65C0-444F-B04A-633B1D147B15}
 		{772D646F-2EB1-4603-A045-B64B467ED0E4} = {B397EEE0-C346-481C-A872-A36C0B7E0FF1}
+		{7B70BEAA-BCC0-4A93-8E04-EC5228969A7E} = {F46B86CB-07A6-4C04-A038-C40A192180F2}
 	EndGlobalSection
 EndGlobal
