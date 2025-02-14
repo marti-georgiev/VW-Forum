@@ -1,11 +1,13 @@
-﻿using VWForum.Data.Models;
+﻿using VWForum.Service.Models;
 using VWForum.Data.Repositories;
-using VWForum.Service.Models;
+using VWForum.Data.Models;
 using VWForum.Service.Mappings;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace VWForum.Service
 {
-    public class CategoryService : ICategoryService
+    internal class CategoryService : ICategoryService
     {
         private readonly CategoryRepository categoryRepository;
 
@@ -17,48 +19,58 @@ namespace VWForum.Service
         public async Task<CategoryServiceModel> CreateAsync(CategoryServiceModel model)
         {
             Category category = model.ToEntity();
-            await this.categoryRepository.CreateAsync(category);
-            return category.ToModel();
-        }
 
-        public async Task<CategoryServiceModel> UpdateAsync(CategoryServiceModel model)
-        {
-            throw new System.NotImplementedException();
+            await this.categoryRepository.CreateAsync(category);
+
+            return category.ToModel();
         }
 
         public async Task<CategoryServiceModel> DeleteAsync(string id)
         {
-            throw new System.NotImplementedException();
+            Category category = (await this.categoryRepository.GetAll().SingleOrDefaultAsync(c => c.Id == id));
+
+            if (category == null)
+            {
+                throw new InvalidOperationException("Category not found");
+            }
+
+            await this.categoryRepository.DeleteAsync(category);
+
+            return category.ToModel();
         }
 
-        public async Task<CategoryServiceModel> GetAsync(string id)
+        public IQueryable<CategoryServiceModel> GetAll()
         {
-            throw new System.NotImplementedException();
-        }   
-
-        public IQueryable<CategoryService> GetAll()
-        {
-            throw new NotImplementedException();
+            return this.categoryRepository.GetAll()
+                .Include(c => c.CreatedBy)
+                .Include(c => c.UpdatedBy)
+                .Include(c => c.DeletedBy)
+                .Select((c => c.ToModel()));
         }
 
-        public async Task<CategoryService> GetByIdAsync(string id)
+        public async Task<CategoryServiceModel> GetByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            return (await this.categoryRepository.GetAll()
+                .Include(c => c.CreatedBy)
+                .Include(c => c.UpdatedBy)
+                .Include(c => c.DeletedBy)
+                .SingleOrDefaultAsync(c => c.Id == id))?.ToModel();
         }
 
-        public Task<CategoryService> CreateAsync(CategoryService model)
+        public async Task<CategoryServiceModel> UpdateAsync(string id, CategoryServiceModel model)
         {
-            throw new NotImplementedException();
-        }
+            Category category = (await this.categoryRepository.GetAll().SingleOrDefaultAsync(c => c.Id == id));
 
-        public Task<CategoryService> UpdateAsync(CategoryService model)
-        {
-            throw new NotImplementedException();
-        }
+                if (category == null)
+            {
+                throw new InvalidOperationException("Category not found");
+            }
+                category.Name = model.Name;
+                category.Description = model.Description;
+                
+           await this.categoryRepository.UpdateAsync(category);
 
-        Task<CategoryService> IGenericService<CategoryService, CategoryServiceModel>.DeleteAsync(string id)
-        {
-            throw new NotImplementedException();
+           return category.ToModel();
         }
     }
 }

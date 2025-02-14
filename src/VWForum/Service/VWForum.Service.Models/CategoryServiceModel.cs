@@ -1,6 +1,4 @@
-﻿using VWForum.Service.Models;
-
-namespace VWForum.Service.Models
+﻿namespace VWForum.Service.Models
 {
     public class CategoryServiceModel : MetadataBaseServiceModel
     {

@@ -8,7 +8,7 @@
 
         IQueryable<TEnity> GetAllAsNoTracking();
 
-        Task<TEnity> EdditAsync(TEnity enity);
+        Task<TEnity> UpdateAsync(TEnity enity);
 
         Task<TEnity> DelliteAsync(TEnity enity);
     }

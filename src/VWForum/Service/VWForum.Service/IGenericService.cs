@@ -2,7 +2,7 @@
 
 namespace VWForum.Service
 {
-    public interface IGenericService<TModel, TEntity>
+    public interface IGenericService<TEntity, TModel>
     {
         IQueryable<TModel> GetAll();
 
@@ -10,8 +10,9 @@ namespace VWForum.Service
 
         Task<TModel> CreateAsync(TModel model);    
 
-        Task<TModel> UpdateAsync(TModel model);
+        Task<TModel> UpdateAsync(string id,TModel model);
 
         Task<TModel> DeleteAsync(string id);
+        
     }
 }

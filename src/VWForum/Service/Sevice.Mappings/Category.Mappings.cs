@@ -15,7 +15,17 @@ namespace VWForum.Service.Mappings
 
         public static CategoryServiceModel ToModel(this Category entity)
         {
-            return null;
+            return new CategoryServiceModel
+            {
+                Name = entity.Name,
+                Description = entity.Description,
+                CreatedOn =entity.CreatedOn,
+                UpdatedOn = entity.UpdatedOn,
+                DeletedOn = entity.DeletedOn,
+                CreatedBy = entity.CreatedBy.ToModel(),
+                UpdatedBy = entity.UpdatedBy.ToModel(),
+                DeletedBy = entity.DeletedBy.ToModel(),
+            };
         }
     }
 }
