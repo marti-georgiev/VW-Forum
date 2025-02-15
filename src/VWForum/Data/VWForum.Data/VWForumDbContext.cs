@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using VWForum.Data.Models;
 
-namespace VWForum.Web.Data
+namespace VWForum.Data
 {
     public class VWForumDbContext : IdentityDbContext<User>
     {   

@@ -3,17 +3,20 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VWForum.Data;
 
 #nullable disable
 
-namespace VWForum.Data.Migrations
+namespace VWForum.Web.Data.Migrations
 {
     [DbContext(typeof(VWForumDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250215172315_Fix")]
+    partial class Fix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -349,6 +352,7 @@ namespace VWForum.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("ForumRoleId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -667,7 +671,9 @@ namespace VWForum.Data.Migrations
                 {
                     b.HasOne("VWForum.Data.Models.Role", "ForumRole")
                         .WithMany()
-                        .HasForeignKey("ForumRoleId");
+                        .HasForeignKey("ForumRoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ForumRole");
                 });
