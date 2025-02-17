@@ -15,10 +15,10 @@ namespace VWForum.Web.Areas.Identity.Pages.Account
 {
     public class LogoutModel : PageModel
     {
-        private readonly SignInManager<User> _signInManager;
+        private readonly SignInManager<ForumUser> _signInManager;
         
 
-        public LogoutModel(SignInManager<User> signInManager)
+        public LogoutModel(SignInManager<ForumUser> signInManager)
         {
             _signInManager = signInManager;
            

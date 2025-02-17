@@ -2,7 +2,7 @@
 {
     public class UserReactionMapping : BaseEntity
     {
-        public User User { get; set; }
+        public ForumUser User { get; set; }
 
         public Reactions Reactions { get; set; }
 

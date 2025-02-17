@@ -1,50 +1,47 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="bg">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - VWForum.Web</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/VWForum.Web.styles.css" asp-append-version="true" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - VW Forum</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    @RenderSection("Scripts", required: false)
+
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">VWForum.Web</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
-            </div>
-        </nav>
+        <img src="~/Images/Icons/VWForumLogo.png" alt="VW Forum Logo" class="logo">
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - VWForum.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+    <nav class="main-nav">
+        <ul class="left-menu">
+            <li><img src="~/Images/Icons/list.png" alt="Меню" class="icon"></li>
+            <li><a asp-controller="Forums" asp-action="Index">Форуми</a></li>
+            <li><a asp-controller="Users" asp-action="Index">Потребители</a></li>
+        </ul>
+        <ul class="right-menu">
+            <li><a asp-controller="Home" asp-action="FAQ"><img src="~/Images/Icons/question.png" alt="ЧЗВ" class="icon"></a></li>
+            <li><a asp-area="Identity" asp-page="/Account/Login"><img src="~/Images/Icons/enter.png" alt="Вход" class="icon"></a></li>
+            <li><a asp-area="Identity" asp-page="/Account/Register"><img src="~/Images/Icons/next.png" alt="Регистрация" class="icon"></a></li>
+        </ul>
+    </nav>
+
+    <nav class="sub-nav">
+        <a asp-controller="Home" asp-action="Index"><img src="~/Images/Icons/home-icon-silhouette.png" alt="Начало" class="icon home-icon"></a>
+        <h1>VWForum</h1>
+        <input type="text" placeholder="Търсене..." class="search-bar">
+    </nav>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer>
+        <p>Форумът е създаден с цел забавление</p>
+        <p>&copy; 2025 Всички права запазени.</p>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

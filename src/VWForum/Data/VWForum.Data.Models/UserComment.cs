@@ -1,10 +1,11 @@
 ﻿namespace VWForum.Data.Models
 {
-    public class UserComment : BaseEntity
+    public class 
+        Comment : BaseEntity
     {
-        public User User { get; set; }
+        public ForumUser User { get; set; }
 
-        public Comments Comment { get; set; }
+        public Comments Comments { get; set; }
 
         public VWThread Thread { get; set; }
     }

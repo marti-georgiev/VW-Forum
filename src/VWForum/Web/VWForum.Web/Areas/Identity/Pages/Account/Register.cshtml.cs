@@ -1,7 +1,7 @@
 ﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
-
+using VWForum.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,23 +18,23 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using VWForum.Data.Models;
+
 
 namespace VWForum.Web.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<User> _signInManager;
-        private readonly UserManager<User> _userManager;
-        private readonly IUserStore<User> _userStore;
-        private readonly IUserEmailStore<User> _emailStore;
+        private readonly SignInManager<ForumUser> _signInManager;
+        private readonly UserManager<ForumUser> _userManager;
+        private readonly IUserStore<ForumUser> _userStore;
+        private readonly IUserEmailStore<ForumUser> _emailStore;
         
         
 
         public RegisterModel(
-            UserManager<User> userManager,
-            IUserStore<User> userStore,
-            SignInManager<User> signInManager)
+            UserManager<ForumUser> userManager,
+            IUserStore<ForumUser> userStore,
+            SignInManager<ForumUser> signInManager)
             
         {
             _userManager = userManager;
@@ -54,7 +54,10 @@ namespace VWForum.Web.Areas.Identity.Pages.Account
        
         public class InputModel
         {
-            
+            [Required]
+            [Display(Name = "Username")]
+            public string Username { get; set; }
+
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -75,7 +78,7 @@ namespace VWForum.Web.Areas.Identity.Pages.Account
         }
 
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public async Task OnGetAsync()
         {
            
         }
@@ -88,20 +91,15 @@ namespace VWForum.Web.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+                await _userStore.SetUserNameAsync(user, Input.Username, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
-                   
+                   await _signInManager.SignInAsync(user, isPersistent: false);
 
-                    var userId = await _userManager.GetUserIdAsync(user);
-                    
-                    
-                   
-
-                        return Redirect("/");
+                    return Redirect("/");
                     
                 }
                 foreach (var error in result.Errors)
@@ -110,31 +108,31 @@ namespace VWForum.Web.Areas.Identity.Pages.Account
                 }
             }
 
-            // If we got this far, something failed, redisplay form
+           
             return Page();
         }
 
-        private User CreateUser()
+        private ForumUser CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<User>();
+                return Activator.CreateInstance<ForumUser>();
             }
             catch
             {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(User)}'. " +
-                    $"Ensure that '{nameof(User)}' is not an abstract class and has a parameterless constructor, or alternatively " +
-                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(ForumUser)}'. " +
+                    $"Ensure that '{nameof(ForumUser)}' is not an abstract class and has a parameterless constructor.");
             }
         }
 
-        private IUserEmailStore<User> GetEmailStore()
+
+        private IUserEmailStore<ForumUser> GetEmailStore()
         {
             if (!_userManager.SupportsUserEmail)
             {
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
-            return (IUserEmailStore<User>)_userStore;
+            return (IUserEmailStore<ForumUser>)_userStore;
         }
     }
 }

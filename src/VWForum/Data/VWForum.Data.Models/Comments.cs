@@ -6,7 +6,7 @@
 
         public List<Attachment> Attachments { get; set; }   
         
-        public List<UserComment> Reactions { get; set; }    
+        public List<Comment> Reactions { get; set; }    
 
         public List<Comments> Replies { get; set; }
     }

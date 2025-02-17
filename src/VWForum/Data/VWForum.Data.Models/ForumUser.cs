@@ -2,7 +2,7 @@
 
 namespace VWForum.Data.Models
 {
-    public class User : IdentityUser
+    public class ForumUser : IdentityUser
     {
         public  Role? ForumRole { get; set; }
     }

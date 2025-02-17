@@ -2,7 +2,7 @@
 {
     public class UserThreadComment : BaseEntity
     {
-        public User User { get; set; }
+        public ForumUser User { get; set; }
         public Comments Comment { get; set; }
         public VWThread Thread { get; set; }
     }

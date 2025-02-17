@@ -1,8 +1,60 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewBag.Title = "Начало";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about building web apps with ASP.NET Core.</p>
+<div class="container">
+    <h2 class="section-title">Общи форуми</h2>
+    <div class="forum-item">
+        <img src="~/Images/Icons/masseges.png" alt="Общ чат" class="original-icon">
+        <div>
+            <h3>Общ чат</h3>
+            <p>Мнения: 150</p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h2 class="section-title">Обяви</h2>
+    <div class="ad-item" onclick="window.location.href='@Url.Action("Details", "Ads", new { id = 1 })';">
+        <h3>VW Golf 4 1.9 TDI</h3>
+        <table class="car-details">
+            <tr>
+                <td>Километри:</td>
+                <td>180 000</td>
+            </tr>
+            <tr>
+                <td>Конски сили:</td>
+                <td>101</td>
+            </tr>
+            <tr>
+                <td>Двигател:</td>
+                <td>Дизел</td>
+            </tr>
+            <tr>
+                <td>Намира се в:</td>
+                <td>София</td>
+            </tr>
+            <tr>
+                <td>Екстри:</td>
+                <td>Климатроник, Кожен салон</td>
+            </tr>
+            <tr>
+                <td>Цвят:</td>
+                <td>Черен</td>
+            </tr>
+            <tr>
+                <td>Година:</td>
+                <td>2005</td>
+            </tr>
+            <tr>
+                <td>Тип:</td>
+                <td>Хечбек</td>
+            </tr>
+            <tr>
+                <td>Тегло:</td>
+                <td>1 300 кг</td>
+            </tr>
+        </table>
+        <div class="price">7 500 лв.</div>
+    </div>
 </div>

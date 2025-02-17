@@ -39,7 +39,7 @@ namespace VWForum.Data.Repositories
         }
 
 
-        private async Task<User> GetUser()
+        private async Task<ForumUser> GetUser()
         {
             string userId = this._httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             return await this._dbContext.Users.SingleOrDefaultAsync(user => user.Id == userId);

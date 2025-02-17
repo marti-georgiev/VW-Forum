@@ -4,7 +4,7 @@ using VWForum.Data.Models;
 
 namespace VWForum.Data
 {
-    public class VWForumDbContext : IdentityDbContext<User>
+    public class VWForumDbContext : IdentityDbContext<ForumUser>
     {   
         public DbSet<Attachment> Attachments { get; set; }
 

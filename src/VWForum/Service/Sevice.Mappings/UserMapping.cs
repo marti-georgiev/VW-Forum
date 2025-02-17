@@ -7,11 +7,11 @@ namespace VWForum.Service.Mappings
 {
     public static class UserMapping
     {
-        public static User ToEntity(this UserServiceModel model)
+        public static ForumUser ToEntity(this UserServiceModel model)
         {
-            return new User();
+            return new ForumUser();
         }
-        public static UserServiceModel ToModel(this User entity)
+        public static UserServiceModel ToModel(this ForumUser entity)
         {
             return new UserServiceModel()
             {

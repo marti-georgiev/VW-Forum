@@ -20,10 +20,10 @@ namespace VWForum.Web.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
-        private readonly SignInManager<User> _signInManager;
+        private readonly SignInManager<ForumUser> _signInManager;
         
 
-        public LoginModel(SignInManager<User> signInManager)
+        public LoginModel(SignInManager<ForumUser> signInManager)
         {
             _signInManager = signInManager;
       
@@ -37,8 +37,7 @@ namespace VWForum.Web.Areas.Identity.Pages.Account
         {
             
             [Required]
-            [EmailAddress]
-            public string Email { get; set; }
+            public string Username { get; set; }
 
          
             [Required]
@@ -68,11 +67,12 @@ namespace VWForum.Web.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(Input.Username, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     
                     return LocalRedirect(returnUrl);
+                 
                 }
                
                  

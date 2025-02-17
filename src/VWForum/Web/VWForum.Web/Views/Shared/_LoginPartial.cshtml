@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using VWForum.Data.Models
-@inject SignInManager<User> SignInManager
-@inject UserManager<User> UserManager
+@inject SignInManager<ForumUser> SignInManager
+@inject UserManager<ForumUser> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
