@@ -1,5 +1,7 @@
 ﻿@page
+@using VWForum.Data.Models
 @model LoginModel
+@inject SignInManager<ForumUser> SignInManager  // Injecting the SignInManager with the correct user type
 
 @{
     ViewData["Title"] = "Вход";
@@ -9,27 +11,32 @@
     <div id="login-container">
         <h2 class="section-title">Вход в системата</h2>
         <div id="login-box">
-            <form id="account" method="post">
-                <div class="form-group">
-                    <label asp-for="Input.Username" class="form-label">Име</label>
-                    <input asp-for="Input.Username" class="form-control" autocomplete="
-name" aria-required="true" placeholder="name@example.com" />
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="Input.Password" class="form-label">Парола</label>
-                    <input asp-for="Input.Password" type="password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="••••••" />
-                </div>
-
-                <div class="form-group remember-me">
-                    <input class="form-check-input" asp-for="Input.RememberMe" />
-                    <label asp-for="Input.RememberMe" class="form-label">Запомни ме</label>
-                </div>
-
-                <div class="form-group">
-                    <button id="login-submit" type="submit" class="btn-primary">Вход</button>
-                </div>
-            </form>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <!-- Logout Form -->
+                <form method="post" asp-page="/Account/Logout">
+                    <button type="submit" class="btn btn-primary">Изход</button>
+                </form>
+            }
+            else
+            {
+                <!-- Login Form -->
+                <form method="post">
+                    <div class="form-group">
+                        <label asp-for="Input.Username" class="form-label">Име</label>
+                        <input asp-for="Input.Username" class="form-control" autocomplete="username" aria-required="true" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Password" class="form-label">Парола</label>
+                        <input asp-for="Input.Password" type="password" class="form-control" autocomplete="current-password" aria-required="true" />
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" asp-for="Input.RememberMe" class="form-check-input" />
+                        <label asp-for="Input.RememberMe" class="form-check-label">Запомни ме</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Вход</button>
+                </form>
+            }
         </div>
     </div>
 </div>

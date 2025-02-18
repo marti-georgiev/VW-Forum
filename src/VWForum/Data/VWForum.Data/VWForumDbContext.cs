@@ -25,6 +25,37 @@ namespace VWForum.Data
 
         }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            
+            builder.Entity<UserReactionMapping>()
+                .HasOne(utr => utr.Thread)
+                .WithMany(t => t.Reactions)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<ForumUser>()
+                .HasOne(u => u.ForumRole)
+                .WithMany()
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<Role>()
+                .HasOne(u => u.CreatedBy)
+                .WithMany()
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<Role>()
+                .HasOne(u => u.UpdatedBy)
+                .WithMany()
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<Role>()
+                .HasOne(u => u.DeletedBy)
+                .WithMany()
+                .OnDelete(DeleteBehavior.NoAction);
+
+            base.OnModelCreating(builder);
+        }
+
 
     }
 }

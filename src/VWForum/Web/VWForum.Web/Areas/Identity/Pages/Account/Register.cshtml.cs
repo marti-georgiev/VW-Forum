@@ -28,8 +28,9 @@ namespace VWForum.Web.Areas.Identity.Pages.Account
         private readonly UserManager<ForumUser> _userManager;
         private readonly IUserStore<ForumUser> _userStore;
         private readonly IUserEmailStore<ForumUser> _emailStore;
-        
-        
+        private const string AdminRole = "Administrator";
+        private const string UserRole = "User";
+
 
         public RegisterModel(
             UserManager<ForumUser> userManager,
@@ -97,7 +98,15 @@ namespace VWForum.Web.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                   await _signInManager.SignInAsync(user, isPersistent: false);
+                    if (_userManager.Users.Count() == 1)
+                    {
+                        await _userManager.AddToRoleAsync(user, AdminRole);
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, UserRole);
+                    }
+                    await _signInManager.SignInAsync(user, isPersistent: false);
 
                     return Redirect("/");
                     

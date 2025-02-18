@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using VWForum.Data;
 using VWForum.Data.Models;
+using VWForum.Web.Seed;
 
 
 public class Program
@@ -16,6 +17,7 @@ public class Program
         builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
         builder.Services.AddDefaultIdentity<ForumUser>(options => options.SignIn.RequireConfirmedAccount = false)
+            .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<VWForumDbContext>();
         builder.Services.AddControllersWithViews();
     }
@@ -34,6 +36,8 @@ public class Program
             // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
         }
+
+        ///app.UseDatabaseSeed();
 
         app.UseHttpsRedirection();
         app.UseStaticFiles();

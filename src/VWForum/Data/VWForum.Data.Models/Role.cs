@@ -2,7 +2,7 @@
 
 namespace VWForum.Data.Models
 {
-    public class Role : BaseEntity
+    public class Role : MetadataBaseEntity
     {
         public const string VWForumDefaultAuthority = "User";
         public string Labele { get; set; }

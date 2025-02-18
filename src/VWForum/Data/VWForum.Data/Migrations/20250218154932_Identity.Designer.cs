@@ -3,17 +3,20 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VWForum.Data;
 
 #nullable disable
 
-namespace VWForum.Data.Migrations
+namespace VWForum.Web.Data.Migrations
 {
     [DbContext(typeof(VWForumDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250218154932_Identity")]
+    partial class Identity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -417,38 +420,11 @@ namespace VWForum.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreatedById")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DeletedById")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("DeletedOn")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Labele")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UpdatedById")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("UpdatedOn")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("CreatedById");
-
-                    b.HasIndex("DeletedById");
-
-                    b.HasIndex("UpdatedById");
 
                     b.ToTable("Roles");
                 });
@@ -690,8 +666,7 @@ namespace VWForum.Data.Migrations
                 {
                     b.HasOne("VWForum.Data.Models.Role", "ForumRole")
                         .WithMany()
-                        .HasForeignKey("ForumRoleId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .HasForeignKey("ForumRoleId");
 
                     b.Navigation("ForumRole");
                 });
@@ -725,33 +700,6 @@ namespace VWForum.Data.Migrations
                     b.Navigation("UpdatedBy");
                 });
 
-            modelBuilder.Entity("VWForum.Data.Models.Role", b =>
-                {
-                    b.HasOne("VWForum.Data.Models.ForumUser", "CreatedBy")
-                        .WithMany()
-                        .HasForeignKey("CreatedById")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("VWForum.Data.Models.ForumUser", "DeletedBy")
-                        .WithMany()
-                        .HasForeignKey("DeletedById")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("VWForum.Data.Models.ForumUser", "UpdatedBy")
-                        .WithMany()
-                        .HasForeignKey("UpdatedById")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("CreatedBy");
-
-                    b.Navigation("DeletedBy");
-
-                    b.Navigation("UpdatedBy");
-                });
-
             modelBuilder.Entity("VWForum.Data.Models.UserReactionMapping", b =>
                 {
                     b.HasOne("VWForum.Data.Models.Reactions", "Reactions")
@@ -763,7 +711,7 @@ namespace VWForum.Data.Migrations
                     b.HasOne("VWForum.Data.Models.VWThread", "Thread")
                         .WithMany("Reactions")
                         .HasForeignKey("ThreadId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("VWForum.Data.Models.ForumUser", "User")
