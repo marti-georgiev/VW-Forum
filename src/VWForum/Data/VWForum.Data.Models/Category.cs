@@ -5,6 +5,7 @@
     {
         public string Name { get; set; }   
 
+        public List<VWTags> Tags { get; set; }
         public string Description { get; set; }
 
     }

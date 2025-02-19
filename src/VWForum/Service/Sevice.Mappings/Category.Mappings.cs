@@ -17,6 +17,8 @@ namespace VWForum.Service.Mappings
         {
             return new CategoryServiceModel
             {
+
+                Id = entity.Id,
                 Name = entity.Name,
                 Description = entity.Description,
                 CreatedOn =entity.CreatedOn,

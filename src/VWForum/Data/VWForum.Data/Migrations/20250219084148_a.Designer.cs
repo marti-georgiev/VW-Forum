@@ -3,17 +3,20 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VWForum.Data;
 
 #nullable disable
 
-namespace VWForum.Data.Migrations
+namespace VWForum.Web.Data.Migrations
 {
     [DbContext(typeof(VWForumDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250219084148_a")]
+    partial class a
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,21 +24,6 @@ namespace VWForum.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("CategoryVWTags", b =>
-                {
-                    b.Property<string>("CategoryId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("TagsId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("CategoryId", "TagsId");
-
-                    b.HasIndex("TagsId");
-
-                    b.ToTable("CategoryVWTags");
-                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -529,6 +517,9 @@ namespace VWForum.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("CategoryId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("CreatedById")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -554,13 +545,20 @@ namespace VWForum.Data.Migrations
                     b.Property<DateTime>("UpdatedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("VWThreadId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("CreatedById");
 
                     b.HasIndex("DeletedById");
 
                     b.HasIndex("UpdatedById");
+
+                    b.HasIndex("VWThreadId");
 
                     b.ToTable("VWTags");
                 });
@@ -611,36 +609,6 @@ namespace VWForum.Data.Migrations
                     b.HasIndex("UpdatedById");
 
                     b.ToTable("VWThread");
-                });
-
-            modelBuilder.Entity("VWTagsVWThread", b =>
-                {
-                    b.Property<string>("TagsId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("VWThreadId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("TagsId", "VWThreadId");
-
-                    b.HasIndex("VWThreadId");
-
-                    b.ToTable("VWTagsVWThread");
-                });
-
-            modelBuilder.Entity("CategoryVWTags", b =>
-                {
-                    b.HasOne("VWForum.Data.Models.Category", null)
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("VWForum.Data.Models.VWTags", null)
-                        .WithMany()
-                        .HasForeignKey("TagsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -894,6 +862,10 @@ namespace VWForum.Data.Migrations
 
             modelBuilder.Entity("VWForum.Data.Models.VWTags", b =>
                 {
+                    b.HasOne("VWForum.Data.Models.Category", null)
+                        .WithMany("Tags")
+                        .HasForeignKey("CategoryId");
+
                     b.HasOne("VWForum.Data.Models.ForumUser", "CreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedById")
@@ -911,6 +883,10 @@ namespace VWForum.Data.Migrations
                         .HasForeignKey("UpdatedById")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
+
+                    b.HasOne("VWForum.Data.Models.VWThread", null)
+                        .WithMany("Tags")
+                        .HasForeignKey("VWThreadId");
 
                     b.Navigation("CreatedBy");
 
@@ -948,19 +924,9 @@ namespace VWForum.Data.Migrations
                     b.Navigation("UpdatedBy");
                 });
 
-            modelBuilder.Entity("VWTagsVWThread", b =>
+            modelBuilder.Entity("VWForum.Data.Models.Category", b =>
                 {
-                    b.HasOne("VWForum.Data.Models.VWTags", null)
-                        .WithMany()
-                        .HasForeignKey("TagsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("VWForum.Data.Models.VWThread", null)
-                        .WithMany()
-                        .HasForeignKey("VWThreadId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Tags");
                 });
 
             modelBuilder.Entity("VWForum.Data.Models.Comments", b =>
@@ -977,6 +943,8 @@ namespace VWForum.Data.Migrations
                     b.Navigation("Coment");
 
                     b.Navigation("Reactions");
+
+                    b.Navigation("Tags");
                 });
 #pragma warning restore 612, 618
         }

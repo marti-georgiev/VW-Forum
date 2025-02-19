@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using VWForum.Data.Extensions;
 using VWForum.Data.Models;
 
 namespace VWForum.Data
@@ -11,6 +12,8 @@ namespace VWForum.Data
         public DbSet<Category> Categories { get; set; }
 
         public DbSet<VWThread> Threads { get; set; }
+
+        public DbSet<VWThread> Tags { get; set; }
 
         public DbSet<Reactions> Reactions { get; set; }
 
@@ -25,6 +28,8 @@ namespace VWForum.Data
 
         }
 
+
+      
         protected override void OnModelCreating(ModelBuilder builder)
         {
             
@@ -38,20 +43,18 @@ namespace VWForum.Data
                 .WithMany()
                 .OnDelete(DeleteBehavior.NoAction);
 
-            builder.Entity<Role>()
-                .HasOne(u => u.CreatedBy)
-                .WithMany()
-                .OnDelete(DeleteBehavior.NoAction);
+            builder.ConfigureMetadataEntity<Role>();
+            builder.ConfigureMetadataEntity<VWTags>();  
 
-            builder.Entity<Role>()
-                .HasOne(u => u.UpdatedBy)
-                .WithMany()
-                .OnDelete(DeleteBehavior.NoAction);
+            builder.Entity<Category>()
+                .HasMany(gc => gc.Tags)
+                .WithMany();
 
-            builder.Entity<Role>()
-                .HasOne(u => u.DeletedBy)
-                .WithMany()
-                .OnDelete(DeleteBehavior.NoAction);
+            builder.Entity<VWThread>()
+                .HasMany(gc => gc.Tags)
+                .WithMany();
+                
+            
 
             base.OnModelCreating(builder);
         }
