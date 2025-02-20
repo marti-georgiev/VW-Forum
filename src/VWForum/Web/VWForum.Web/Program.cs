@@ -37,7 +37,7 @@ public class Program
             app.UseHsts();
         }
 
-        ///app.UseDatabaseSeed();
+        //app.UseDatabaseSeed();
 
         app.UseHttpsRedirection();
         app.UseStaticFiles();

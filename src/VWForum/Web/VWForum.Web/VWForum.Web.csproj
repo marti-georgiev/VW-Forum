@@ -24,7 +24,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\VWForum.Data.Models\VWForum.Data.Models.csproj" />
     <ProjectReference Include="..\..\Data\VWForum.Data\VWForum.Data.csproj" />
+    <ProjectReference Include="..\..\Service\Sevice.Mappings\VWForum.Service.Mappings.csproj" />
+    <ProjectReference Include="..\..\Service\VWForum.Service.Models\VWForum.Service.Models.csproj" />
+    <ProjectReference Include="..\..\Service\VWForum.Service\VWForum.Service.csproj" />
+    <ProjectReference Include="..\VWForum.Web.Models\VWForum.Web.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Home\Community\" />
   </ItemGroup>
 
 </Project>
