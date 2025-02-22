@@ -833,3 +833,65 @@ footer {
         padding: 10px;
         font-size: 16px;
     }
+/* Стилизация за FAQ страницата, съобразена със сайта */
+.faq-container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
+
+    .faq-container h2 {
+        text-align: center;
+        color: #8b0000; /* Тъмночервено, пасващо на заглавката */
+        margin-bottom: 20px;
+        font-size: 26px;
+    }
+
+.faq-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    background: #f9f9f9;
+    border-left: 5px solid #8b0000;
+    transition: background 0.3s ease-in-out;
+}
+
+    .faq-item:hover {
+        background: #f0f0f0;
+    }
+
+    .faq-item h3 {
+        margin: 0;
+        color: #8b0000;
+        font-size: 20px;
+    }
+
+    .faq-item p {
+        margin: 8px 0 0;
+        font-size: 16px;
+        color: #333;
+    }
+
+.faq-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 10px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.faq-header {
+    background: #8b0000; /* Червен фон като на сайта */
+    color: white; /* Бял текст */
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}

@@ -10,6 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\FAQ\**" />
+    <Content Remove="Views\FAQ\**" />
+    <EmbeddedResource Remove="Views\FAQ\**" />
+    <None Remove="Views\FAQ\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.11" />
@@ -34,7 +41,6 @@
 
   <ItemGroup>
     <Folder Include="Views\Home\Community\" />
-    <Folder Include="Views\FAQ\" />
   </ItemGroup>
 
 </Project>
