@@ -1,16 +1,16 @@
-﻿using System.Reflection.Emit;
-using VWForum.Data.Models;
+﻿using VWForum.Data.Models;
 using VWForum.Service.Models;
 
 namespace VWForum.Service.Mappings
 {
-    public static class TagsMappings 
+    public static class TagsMappings
     {
         public static VWTags ToEntity(this TagsServiceModel model)
         {
             return new VWTags
             {
-                Lable = model.Lable,   
+                Id = model.Id,  
+                Lable = model.Lable
             };
         }
 
@@ -23,10 +23,9 @@ namespace VWForum.Service.Mappings
                 CreatedOn = entity.CreatedOn,
                 UpdatedOn = entity.UpdatedOn,
                 DeletedOn = entity.DeletedOn,
-                CreatedBy = entity.CreatedBy.ToModel(),
-                UpdatedBy = entity.UpdatedBy.ToModel(),
-                DeletedBy = entity.DeletedBy.ToModel(),
-
+                CreatedBy = entity.CreatedBy?.ToModel(),  
+                UpdatedBy = entity.UpdatedBy?.ToModel(),
+                DeletedBy = entity.DeletedBy?.ToModel()
             };
         }
     }

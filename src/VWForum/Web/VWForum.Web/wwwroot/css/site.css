@@ -895,3 +895,245 @@ footer {
     border-radius: 5px;
     margin-bottom: 15px;
 }
+
+
+/* General Form Styling */
+.community-create-form {
+    max-width: 650px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border: 2px solid #8b0000;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Red Header */
+.community-header {
+    background: #8b0000;
+    color: white;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 15px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    margin-bottom: 20px;
+}
+
+/* Labels */
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+/* Input Fields */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background: #f9f9f9;
+}
+
+/* Textarea */
+textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Dropdown (Category Selection) */
+select.form-control {
+    background-color: #f9f9f9;
+}
+
+/* Tags Input */
+
+
+/* Submit Button */
+.btn-submit {
+    width: 100%;
+    background: #8b0000;
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+    .btn-submit:hover {
+        background: #a00000;
+    }
+
+/* Container for the form */
+.community-create-form {
+    max-width: 700px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgb(151, 1, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Red header */
+.community-create-form::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: rgb(151, 1, 1);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* Title inside the red bar */
+.community-create-form h2 {
+    position: relative;
+    text-align: center;
+    color: white;
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    z-index: 2;
+    margin-top: 1px;
+}
+
+/* Form field styling */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+/* Input fields */
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background: #f9f9f9;
+    transition: border-color 0.3s ease-in-out;
+}
+
+/* Focus effect for inputs */
+.form-control:focus {
+    border-color: rgb(151, 1, 1);
+    outline: none;
+}
+
+/* Textarea */
+textarea.form-control {
+    resize: vertical;
+    min-height: 150px;
+}
+
+/* Select Dropdown */
+select.form-control {
+    background-color: #f9f9f9;
+}
+
+/* Tags Section */
+.forum-tags-input {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 10px;
+    background: #f8f8f8;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    min-height: 50px;
+}
+
+/* Individual Tag */
+.created-tag {
+    background: #8b0000;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    font-weight: bold;
+    transition: background 0.2s ease-in-out;
+}
+
+.created-tag:hover {
+    background: #a00000;
+}
+
+/* Remove Tag */
+.remove-tag {
+    margin-left: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    background: none;
+    border: none;
+}
+
+.remove-tag:hover {
+    color: #ffdddd;
+}
+
+/* Submit Button */
+.btn-submit {
+    width: 100%;
+    background: rgb(151, 1, 1);
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.btn-submit:hover {
+    background: #a00000;
+    transform: scale(1.02);
+}
+.forum-tags-input {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 10px;
+    background: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.created-tag {
+    background: #8b0000;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.remove-tag {
+    margin-left: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}

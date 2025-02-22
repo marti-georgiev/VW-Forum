@@ -3,74 +3,88 @@ using VWForum.Data.Repositories;
 using VWForum.Data.Models;
 using VWForum.Service.Mappings;
 using Microsoft.EntityFrameworkCore;
+using VWForum.Service.Tag;
 
 
-namespace VWForum.Service
+namespace VWForum.Service.Community
 {
-    internal class CategoryService : ICategoryService
+    public class CategoryService : ICategoryService
     {
         private readonly CategoryRepository categoryRepository;
 
-        public CategoryService(CategoryRepository categoryRepository)
+        private readonly ITagService tagService;
+
+        public CategoryService(CategoryRepository categoryRepository, ITagService tagService)
         {
             this.categoryRepository = categoryRepository;
+
+            this.tagService = tagService;
         }
 
         public async Task<CategoryServiceModel> CreateAsync(CategoryServiceModel model)
         {
             Category category = model.ToEntity();
 
-            await this.categoryRepository.CreateAsync(category);
+            category.Tags = category.Tags.Select(async tag => {
+            return (await this.tagService.InternalCreateAsync(tag));
+        }).Select(t => t.Result).ToList();
+
+            await categoryRepository.CreateAsync(category);
 
             return category.ToModel();
+        }
+        public Task<Category> InternalCreateAsync(Category model)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<CategoryServiceModel> DeleteAsync(string id)
         {
-            Category category = (await this.categoryRepository.GetAll().SingleOrDefaultAsync(c => c.Id == id));
+            Category category = await categoryRepository.GetAll().SingleOrDefaultAsync(c => c.Id == id);
 
             if (category == null)
             {
                 throw new InvalidOperationException("Category not found");
             }
 
-            await this.categoryRepository.DeleteAsync(category);
+            await categoryRepository.DeleteAsync(category);
 
             return category.ToModel();
         }
 
         public IQueryable<CategoryServiceModel> GetAll()
         {
-            return this.categoryRepository.GetAll()
+            return categoryRepository.GetAll()
                 .Include(c => c.CreatedBy)
                 .Include(c => c.UpdatedBy)
                 .Include(c => c.DeletedBy)
-                .Select((c => c.ToModel()));
+                .Select(c => c.ToModel());
         }
 
         public async Task<CategoryServiceModel> GetByIdAsync(string id)
         {
-            return (await this.categoryRepository.GetAll()
+            return (await categoryRepository.GetAll()
                 .Include(c => c.CreatedBy)
                 .Include(c => c.UpdatedBy)
                 .Include(c => c.DeletedBy)
                 .SingleOrDefaultAsync(c => c.Id == id))?.ToModel();
         }
 
+     
         public async Task<CategoryServiceModel> UpdateAsync(string id, CategoryServiceModel model)
         {
-            Category category = (await this.categoryRepository.GetAll().SingleOrDefaultAsync(c => c.Id == id));
+            Category category = await categoryRepository.GetAll().SingleOrDefaultAsync(c => c.Id == id);
 
-                if (category == null)
+            if (category == null)
             {
                 throw new InvalidOperationException("Category not found");
             }
-                category.Name = model.Name;
-                category.Description = model.Description;
-                
-           await this.categoryRepository.UpdateAsync(category);
+            category.Name = model.Name;
+            category.Description = model.Description;
 
-           return category.ToModel();
+            await categoryRepository.UpdateAsync(category);
+
+            return category.ToModel();
         }
     }
 }

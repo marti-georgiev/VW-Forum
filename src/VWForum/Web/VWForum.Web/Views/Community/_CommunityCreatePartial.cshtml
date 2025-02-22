@@ -1,18 +1,28 @@
-﻿@using VWForum.Web.Models.Thread
-@model ThreadCreateModel
+﻿@using VWForum.Web.Models.Community
+@model CreateCommunityModel
 
-<div class="thread-create-form">
-    <h2>Създаване на нова тема</h2>
+<div class="community-create-form">
+    <h2>Създаване на нова група</h2>
 
-    <form id="create-thread-form" asp-controller="Thread" asp-action="Create" method="post">
+    <form id="create-community-form" asp-controller="Community" asp-action="Create" method="post">
         <div class="form-group">
-            <label asp-for="Title">Заглавие</label>
-            <input asp-for="Title" class="form-control" aria-required="true" placeholder="Име на поста..." required />
+            <label asp-for="Name">Име на групата</label>
+            <input asp-for="Name" class="form-control" aria-required="true" placeholder="Име на групата..." required />
         </div>
 
         <div class="form-group">
-            <label asp-for="Content">Съдържание</label>
-            <textarea asp-for="Content" class="form-control" aria-required="true" placeholder="Текст..." required></textarea>
+            <label asp-for="Description">Описание</label>
+            <textarea asp-for="Description" class="form-control" aria-required="true" placeholder="Опишете групата..." required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Category">Категория</label>
+            <select asp-for="Category" class="form-control" required>
+                <option value="General">Общи дискусии</option>
+                <option value="Technical">Технически</option>
+                <option value="Tuning">Тунинг & Перформанс</option>
+                <option value="Events">Събития & Срещи</option>
+            </select>
         </div>
 
         <div class="form-group">
@@ -24,18 +34,7 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label asp-for="CommunityId" class="d-block form-label fw-bold">Групи</label>
-            <select asp-for="CommunityId" class="form-control community-dropdown" required>
-                <option value="">-- Избери група --</option>
-                <option value="1">VW Club</option>
-                <option value="2">Golf MK4 Community</option>
-                <option value="3">VW TDI Enthusiasts</option>
-                <option value="4">Performance & Tuning</option>
-            </select>
-        </div>
-
-        <button type="submit" class="btn-submit">Създай тема</button>
+        <button type="submit" class="btn-submit">Създай група</button>
     </form>
 </div>
 

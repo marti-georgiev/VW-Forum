@@ -10,13 +10,13 @@ namespace VWForum.Web.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            return View("~/Views/Shared/Create.cshtml");
         }
         [HttpPost]
 
         public IActionResult CreateConfirm(ThreadCreateModel creatThreadModel)
         {
-            return View();
+            return View("~/Views/Shared/Create.cshtml");
         }
 
     }

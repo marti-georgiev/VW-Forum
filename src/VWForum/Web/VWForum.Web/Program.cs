@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using VWForum.Data;
 using VWForum.Data.Models;
+using VWForum.Data.Repositories;
+using VWForum.Service.Community;
+using VWForum.Service.Tag;
 using VWForum.Web.Seed;
 
 
@@ -15,6 +18,14 @@ public class Program
         builder.Services.AddDbContext<VWForumDbContext>(options =>
             options.UseSqlServer(connectionString));
         builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+        //App Repositories
+        builder.Services.AddTransient<CategoryRepository>();
+        builder.Services.AddTransient<TagsRepository>();
+
+        //App Services
+        builder.Services.AddTransient<ICategoryService, CategoryService>();
+        builder.Services.AddTransient<ITagService, TagService>();
 
         builder.Services.AddDefaultIdentity<ForumUser>(options => options.SignIn.RequireConfirmedAccount = false)
             .AddRoles<IdentityRole>()
