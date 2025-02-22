@@ -34,6 +34,7 @@
 
   <ItemGroup>
     <Folder Include="Views\Home\Community\" />
+    <Folder Include="Views\FAQ\" />
   </ItemGroup>
 
 </Project>

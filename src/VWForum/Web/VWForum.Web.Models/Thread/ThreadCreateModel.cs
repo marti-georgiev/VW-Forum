@@ -8,6 +8,6 @@
 
         public string Content { get; set; }
 
-        public List<string> TagsIds { get; set; }
+        public List<string> Tags { get; set; }
     }
 }

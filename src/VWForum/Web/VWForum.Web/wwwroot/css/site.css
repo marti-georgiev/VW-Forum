@@ -84,6 +84,7 @@ header {
     padding: 10px;
     display: flex;
     align-items: center;
+
 }
 
     .sub-nav .home-icon {
@@ -93,7 +94,7 @@ header {
     }
 
     .sub-nav h1 {
-        color: black;
+        color: white;
         font-size: 24px;
         margin-right: 20px;
     }
@@ -324,24 +325,41 @@ footer {
 }
 /* Стилове за формата за създаване на тема */
 .thread-create-form {
-    max-width: 600px;
+    max-width: 700px;
     margin: 40px auto;
-    background: #fff;
-    padding: 25px;
+    background: white; /* Бял фон на цялата форма */
+    padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     border: 2px solid rgb(151, 1, 1);
+    position: relative;
+    overflow: hidden; /* За да не излиза лентата извън контейнера */
 }
 
+    /* Червена лента отгоре */
+    .thread-create-form::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 80px; /* Височина на червената лента */
+        background: rgb(151, 1, 1);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    /* Заглавие в червената лента */
     .thread-create-form h2 {
+        position: relative;
         text-align: center;
-        color: rgb(151, 1, 1);
+        color: white;
         font-size: 24px;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
         text-transform: uppercase;
         font-weight: bold;
-        border-bottom: 2px solid rgb(151, 1, 1);
-        padding-bottom: 10px;
+        padding-top: 25px;
+        z-index: 2;
     }
 
     .thread-create-form .form-group {
@@ -405,6 +423,49 @@ footer {
             border-color: rgb(151, 1, 1);
             outline: none;
         }
+.thread-create-form {
+    max-width: 700px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgb(151, 1, 1);
+    position: relative;
+    overflow: hidden;
+    padding-top: 100px; /* Оставяме място за заглавието */
+}
+
+    /* Червена лента отгоре */
+    .thread-create-form::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 90px; /* Височина на червената лента */
+        background: rgb(151, 1, 1);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        z-index: 1;
+    }
+
+    /* Заглавие в червената лента - центрирано нагоре */
+    .thread-create-form h2 {
+        position: absolute;
+        top: -35px; /* Повдигаме заглавието нагоре */
+        left: 0;
+        width: 100%;
+        text-align: center;
+        color: white;
+        font-size: 28px;
+        text-transform: uppercase;
+        font-weight: bold;
+        z-index: 2;
+        line-height: 70px; /* Коригиране на вертикалното центриране */
+    }
+
+
 /* Позициониране на падащото меню малко по-надолу */
 .dropdown-content {
     display: none;
@@ -421,4 +482,354 @@ footer {
     /* Показване на падащото меню */
     .dropdown-content.show {
         display: block;
+    }
+
+.created-tag {
+    background: #f1f1f1;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+.created-tags {
+    position: relative;
+    bottom: 35px;
+
+}
+
+.created-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px;
+    background: #f8f9fa;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    min-height: 40px;
+    align-items: center;
+}
+
+.created-tag {
+    background: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.remove-tag {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.form-tags-input {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 8px;
+    outline: none;
+}
+
+    .form-tags-input:focus {
+        border-color: rgb(151, 1, 1);
+    }
+
+.form-control {
+    font-family: Arial, sans-serif; /* Или друг предпочитан шрифт */
+    font-size: 16px;
+    color: #333;
+}
+.thread-create-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-tags-input-field {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.created-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.created-tag {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+    .created-tag span {
+        margin-left: 5px;
+        cursor: pointer;
+        color: white;
+        font-weight: bold;
+    }
+.thread-create-form {
+    max-width: 700px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgb(151, 1, 1);
+    position: relative;
+    overflow: hidden;
+    padding-top: 100px; /* Оставяме място за заглавието */
+}
+
+/* 📌 Червена лента в заглавието */
+.thread-create-form::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    background: rgb(151, 1, 1);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    z-index: 1;
+}
+
+/* 📌 Заглавие в червената лента */
+.thread-create-form h2 {
+    position: absolute;
+    top: -35px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 28px;
+    text-transform: uppercase;
+    font-weight: bold;
+    z-index: 2;
+    line-height: 70px;
+}
+
+/* 📌 Общ стил за формата */
+.thread-create-form .form-group {
+    margin-bottom: 20px;
+}
+
+.thread-create-form label {
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.thread-create-form .form-control {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.thread-create-form .form-control:focus {
+    border-color: rgb(151, 1, 1);
+    outline: none;
+}
+
+.thread-create-form textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+/* 📌 Бутон за изпращане */
+.thread-create-form .btn-submit {
+    width: 100%;
+    padding: 12px;
+    background: rgb(151, 1, 1);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.thread-create-form .btn-submit:hover {
+    background: rgb(121, 1, 1);
+    transform: scale(1.02);
+}
+
+/* 📌 Секция за тагове */
+.thread-create-form .created-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px;
+    background: #f8f9fa;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    min-height: 40px;
+    align-items: center;
+}
+
+/* 📌 Стил на самите тагове */
+.thread-create-form .created-tag {
+    background: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* 📌 Стил за бутоните за изтриване */
+.thread-create-form .remove-tag {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* 📌 Поле за тагове */
+.thread-create-form .form-tags-input-field {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 8px;
+    outline: none;
+}
+
+.thread-create-form .form-tags-input-field:focus {
+    border-color: rgb(151, 1, 1);
+}
+
+/* 📌 Общ стил на формата */
+.thread-create-form .form-control {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+}
+/* ✅ Основен контейнер за таговете (запазва рамката) */
+.forum-tags-input {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start; /* Подравнява съдържанието нагоре */
+    gap: 8px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    padding: 15px; /* 🔥 Увеличено отстояние вътре в контейнера */
+    background: #f9f9f9;
+    min-height: 50px;
+}
+
+/* ✅ Още по-голямо разстояние на таговете от горния ръб */
+.created-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    flex-grow: 1;
+    min-height: auto;
+    width: 100%;
+    border: none !important;
+    background: none !important;
+    padding-top: 15px; /* 🔥 Още повече отстояние от горната част */
+}
+
+/* ✅ Дизайн на самите тагове */
+.created-tag {
+    background: #007bff;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: bold;
+    white-space: nowrap;
+    transition: background 0.3s ease-in-out;
+}
+
+    .created-tag:hover {
+        background: #0056b3;
+    }
+
+/* ✅ Бутон за премахване на таг */
+.remove-tag {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+    .remove-tag:hover {
+        color: #ffdddd;
+    }
+
+/* ✅ Поле за въвеждане на тагове (подравнено по-добре) */
+.form-tags-input-field {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background: none;
+    padding: 10px;
+    flex-grow: 1;
+    min-width: 120px;
+    display: inline-block;
+    margin-top: 10px; /* 🔥 Още по-добро подравняване */
+}
+
+/* ✅ Основен стил за dropdown-a */
+.community-dropdown {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    background: #fff;
+    cursor: pointer;
+}
+
+    /* ✅ Стилизация при ховър и фокус */
+    .community-dropdown:focus {
+        border-color: rgb(151, 1, 1);
+        outline: none;
+    }
+
+    /* ✅ Стил за dropdown опциите */
+    .community-dropdown option {
+        padding: 10px;
+        font-size: 16px;
     }

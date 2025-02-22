@@ -16,11 +16,74 @@
         </div>
 
         <div class="form-group">
-            <input type="hidden" asp-for="TagsIds" />
-            <label>Тагове</label>
-            <input class="form-control tags-input" placeholder="Тагове..." />
+            <input type="hidden" asp-for="Tags" id="tags-hidden" />
+            <label asp-for="Tags">Тагове</label>
+
+            <div class="forum-tags-input">
+                <div class="created-tags"></div>
+                <input class="form-tags-input-field" maxlength="20" placeholder="Добави таг..." />
+            </div>
         </div>
 
-        <button type="submit" class="btn-submit">Създай тема</button>
+        <div class="form-group">
+            <label asp-for="CommunityId" class="d-block form-label fw-bold">Групи</label>
+            <select asp-for="CommunityId" class="form-control community-dropdown">
+                <option value="">-- Избери група --</option>
+                <option value="1">VW Club</option>
+                <option value="2">Golf MK4 Community</option>
+                <option value="3">VW TDI Enthusiasts</option>
+                <option value="4">Performance & Tuning</option>
+            </select>
+        </div>
+
+        <button class="btn-submit" type="submit">Създай тема</button>
     </form>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const tagsContainer = document.querySelector('.created-tags');
+        const tagInputField = document.querySelector('.form-tags-input-field');
+        const hiddenTagsInput = document.getElementById('tags-hidden');
+        let currentTags = [];
+
+        tagInputField.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.keyCode === 13) {
+                e.preventDefault();
+
+                let tagValue = e.target.value.trim().toLowerCase();
+
+                if (tagValue && !currentTags.includes(tagValue)) {
+                    currentTags.push(tagValue);
+                    updateTags();
+                }
+
+                e.target.value = '';
+            }
+        });
+
+        function updateTags() {
+            tagsContainer.innerHTML = '';
+            currentTags.forEach(tag => {
+                let tagSpan = document.createElement('span');
+                tagSpan.classList.add('created-tag');
+                tagSpan.innerText = `#${tag}`;
+
+                let removeBtn = document.createElement('span');
+                removeBtn.innerText = ' ✖';
+                removeBtn.classList.add('remove-tag');
+                removeBtn.addEventListener('click', () => removeTag(tag));
+
+                tagSpan.appendChild(removeBtn);
+                tagsContainer.appendChild(tagSpan);
+            });
+
+            hiddenTagsInput.value = currentTags.join(',');
+        }
+
+        function removeTag(tag) {
+            currentTags = currentTags.filter(t => t !== tag);
+            updateTags();
+        }
+    });
+</script>
