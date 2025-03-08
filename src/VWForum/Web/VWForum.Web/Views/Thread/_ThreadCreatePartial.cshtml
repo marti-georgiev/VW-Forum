@@ -6,27 +6,27 @@
 
     <form id="create-thread-form" asp-controller="Thread" asp-action="Create" method="post">
         <div class="form-group">
-            <label asp-for="Title">Заглавие</label>
-            <input asp-for="Title" class="form-control" aria-required="true" placeholder="Име на поста..." required />
+            <label asp-for="@Model.Title">Заглавие</label>
+            <input asp-for="@Model.Title" class="form-control" aria-required="true" placeholder="Име на поста..." required />
         </div>
 
         <div class="form-group">
-            <label asp-for="Content">Съдържание</label>
-            <textarea asp-for="Content" class="form-control" aria-required="true" placeholder="Текст..." required></textarea>
+            <label asp-for="@Model.Content">Съдържание</label>
+            <textarea asp-for="@Model.Content" class="form-control" aria-required="true" placeholder="Текст..." required></textarea>
         </div>
 
         <div class="form-group">
-            <label asp-for="Tags">Тагове</label>
+            <label asp-for="@Model.Tags">Тагове</label>
             <div class="forum-tags-input">
                 <div class="created-tags"></div>
-                <input type="hidden" asp-for="Tags" id="tags-hidden" />
+                <input type="hidden" asp-for="@Model.Tags" id="tags-hidden" />
                 <input class="form-tags-input-field" maxlength="20" placeholder="Добави таг..." />
             </div>
         </div>
 
         <div class="form-group">
-            <label asp-for="CommunityId" class="d-block form-label fw-bold">Групи</label>
-            <select asp-for="CommunityId" class="form-control community-dropdown" required>
+            <label asp-for="@Model.CommunityId" class="d-block form-label fw-bold">Групи</label>
+            <select asp-for="@Model.CommunityId" class="form-control community-dropdown" required>
                 <option value="">-- Избери група --</option>
                 <option value="1">VW Club</option>
                 <option value="2">Golf MK4 Community</option>

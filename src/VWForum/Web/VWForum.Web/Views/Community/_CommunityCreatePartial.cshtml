@@ -4,10 +4,10 @@
 <div class="community-create-form">
     <h2>Създаване на нова група</h2>
 
-    <form id="create-community-form" asp-controller="Community" asp-action="Create" method="post">
+    <form id="create-community-form" asp-controller="Community" asp-action="CreateConfirm" method="post">
         <div class="form-group">
-            <label asp-for="Name">Име на групата</label>
-            <input asp-for="Name" class="form-control" aria-required="true" placeholder="Име на групата..." required />
+            <label asp-for="@Model.Name">Име на групата</label>
+            <input asp-for="@Model.Name" class="form-control" aria-required="true" placeholder="Име на групата..." required />
         </div>
 
         <div class="form-group">
@@ -16,8 +16,8 @@
         </div>
 
         <div class="form-group">
-            <label asp-for="Category">Категория</label>
-            <select asp-for="Category" class="form-control" required>
+            <label asp-for="@Model.Category">Категория</label>
+            <select asp-for="@Model.Category" class="form-control" required>
                 <option value="General">Общи дискусии</option>
                 <option value="Technical">Технически</option>
                 <option value="Tuning">Тунинг & Перформанс</option>
@@ -26,10 +26,10 @@
         </div>
 
         <div class="form-group">
-            <label asp-for="Tags">Тагове</label>
+            <label asp-for="@Model.Tags">Тагове</label>
             <div class="forum-tags-input">
                 <div class="created-tags"></div>
-                <input type="hidden" asp-for="Tags" id="tags-hidden" />
+                <input type="hidden" asp-for="@Model.Tags" id="tags-hidden" />
                 <input class="form-tags-input-field" maxlength="20" placeholder="Добави таг..." />
             </div>
         </div>

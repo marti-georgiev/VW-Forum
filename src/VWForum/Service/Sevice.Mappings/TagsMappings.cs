@@ -9,7 +9,6 @@ namespace VWForum.Service.Mappings
         {
             return new VWTags
             {
-                Id = model.Id,  
                 Lable = model.Lable
             };
         }

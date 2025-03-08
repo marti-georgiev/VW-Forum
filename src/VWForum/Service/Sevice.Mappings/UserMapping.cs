@@ -15,7 +15,7 @@ namespace VWForum.Service.Mappings
         {
             return new UserServiceModel()
             {
-                ForumRole = entity.ForumRole.ToModel(),
+                ForumRole = entity.ForumRole?.ToModel(),
                 Email = entity.Email,
                 UserName = entity.UserName,
                 Id = entity.Id,            

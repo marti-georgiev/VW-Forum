@@ -12,10 +12,10 @@ namespace VWForum.Web.Models.Community
         
         public string Description { get; set; }
 
-        [Required]
+        //[Required]
         public string Category { get; set; }
 
-        [BindProperty(BinderType = typeof(TagsModelBinder))]
+        //[BindProperty(BinderType = typeof(TagsModelBinder))]
         public List<string> Tags { get; set; }
     }
 }

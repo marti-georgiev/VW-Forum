@@ -17,7 +17,7 @@ namespace VWForum.Web.Controllers
         [HttpGet]
         public async Task<IActionResult>Create()
         {
-            return View();
+            return View("~/Views/Shared/Create.cshtml");
         }
 
         [HttpPost]
